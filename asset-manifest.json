@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/garimpador/static/css/main.df56513d.css",
-    "main.js": "/garimpador/static/js/main.fe618135.js",
+    "main.css": "/garimpador/static/css/main.4dd84930.css",
+    "main.js": "/garimpador/static/js/main.0c03515e.js",
     "index.html": "/garimpador/index.html",
-    "main.df56513d.css.map": "/garimpador/static/css/main.df56513d.css.map",
-    "main.fe618135.js.map": "/garimpador/static/js/main.fe618135.js.map"
+    "main.4dd84930.css.map": "/garimpador/static/css/main.4dd84930.css.map",
+    "main.0c03515e.js.map": "/garimpador/static/js/main.0c03515e.js.map"
   },
   "entrypoints": [
-    "static/css/main.df56513d.css",
-    "static/js/main.fe618135.js"
+    "static/css/main.4dd84930.css",
+    "static/js/main.0c03515e.js"
   ]
 }
