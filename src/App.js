@@ -24,84 +24,96 @@ function Formulario() {
       cpcMaximo: "",
     })
   );
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setProduto((prev) => ({ ...prev, [name]: value }));
+  }
+
   return (
     <div className="formulario">
       <h1>Formulário Produto</h1>
       <form>
         <div className="row-group">
-          <label>
+          <Campo value={produto.nome} onChange={handleChange} name="nome">
             Nome:
-            <input
-              type="text"
-              value={produto.nome}
-              onChange={(e) => setProduto({ ...produto, nome: e.target.value })}
-            />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            value={produto.rangeCpc}
+            onChange={handleChange}
+            name="rangeCpc"
+          >
             Range CPC:
-            <input
-              type="text"
-              value={produto.rangeCpc}
-              onChange={(e) =>
-                setProduto({ ...produto, rangeCpc: e.target.value })
-              }
-            />
-          </label>
-          <label>
+          </Campo>
+
+          <Campo onChange={handleChange} value={produto.preco} name="preco">
             Preço:
-            <input
-              type="text"
-              value={produto.preco}
-              onChange={(e) =>
-                setProduto({ ...produto, preco: e.target.value })
-              }
-            />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            onChange={handleChange}
+            value={produto.comissao}
+            name="comissao"
+          >
             Comissão:
-            <input
-              type="text"
-              value={produto.comissao}
-              onChange={(e) =>
-                setProduto({ ...produto, comissao: e.target.value })
-              }
-            />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            onChange={handleChange}
+            value={produto.qtdBuscasMes}
+            name="qtdBuscasMes"
+          >
             Quantidade de Buscas Mês:
-            <input
-              type="text"
-              value={produto.qtdBuscasMes}
-              onChange={(e) =>
-                setProduto({ ...produto, qtdBuscasMes: e.target.value })
-              }
-            />
-          </label>
+          </Campo>
         </div>
         <div className="row-group">
-          <label>
+          <Campo
+            onChange={handleChange}
+            value={produto.cpcMedio}
+            name="cpcMedio"
+          >
             CPC Médio:
-            <input type="text" value={produto.cpcMedio} />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            onChange={handleChange}
+            value={produto.percentualComissao}
+            name="percentualComissao"
+          >
             Percentual Comissão:
-            <input type="text" value={produto.percentualComissao} />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            onChange={handleChange}
+            value={produto.custoVenda}
+            name="custoVenda"
+          >
             Custo por Venda
-            <input type="text" value={produto.custoVenda} />
-          </label>
-          <label>
+          </Campo>
+          <Campo onChange={handleChange} value={produto.lucro} name="lucro">
             Lucro
-            <input type="text" value={produto.lucro} />
-          </label>
-          <label>
+          </Campo>
+          <Campo
+            onChange={handleChange}
+            value={produto.cpcMaximo}
+            name="cpcMaximo"
+          >
             CPC Máximo
-            <input type="text" value={produto.cpcMaximo} />
-          </label>
+          </Campo>
         </div>
       </form>
     </div>
+  );
+}
+
+function Campo({ children, value, onChange, name, readOnly = false }) {
+  return (
+    <label>
+      {children}
+      <input
+        name={name}
+        type="text"
+        value={value}
+        onChange={onChange}
+        readOnly={readOnly}
+      />
+    </label>
   );
 }
 
