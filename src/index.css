@@ -14,21 +14,37 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto";
   background: var(--neutral-700);
   color: var(--neutral-100);
   padding: 5rem;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 .formulario {
   background: var(--neutral-800);
   padding: 2rem;
   border-radius: 2rem;
+}
+
+.row-group {
+  display: flex;
+  padding: 1rem 0;
+  gap: 2rem;
+}
+
+.row-group label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  gap: 0.3rem;
+}
+
+.row-group input {
+  background-color: var(--neutral-600);
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--neutral-0);
+  padding: 0.5rem;
+  font-weight: bold;
+  width: 100%;
 }
