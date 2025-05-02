@@ -64,3 +64,27 @@ body {
   font-weight: bold;
   width: 100%;
 }
+
+table {
+  margin-top: 1rem;
+  background: var(--neutral-800);
+  width: 100%;
+}
+
+thead {
+  background-color: var(--neutral-900);
+}
+
+th {
+  padding: 0.5rem 1rem;
+}
+
+td {
+  text-align: center;
+  background-color: var(--neutral-600);
+  padding: 0.3rem 0.5rem;
+}
+
+.txt-left {
+  text-align: left;
+}
