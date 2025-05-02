@@ -26,6 +26,22 @@ body {
   border-radius: 2rem;
 }
 
+.formulario button {
+  border: 2px solid var(--red-400);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  background-color: transparent;
+  color: var(--red-400);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.formulario button:hover {
+  color: var(--neutral-0);
+  background-color: var(--red-400);
+}
+
 .row-group {
   display: flex;
   padding: 1rem 0;

@@ -69,6 +69,7 @@ function Formulario() {
             onChange={handleChange}
             value={produto.cpcMedio}
             name="cpcMedio"
+            readOnly={true}
           >
             CPC Médio:
           </Campo>
@@ -76,6 +77,7 @@ function Formulario() {
             onChange={handleChange}
             value={produto.percentualComissao}
             name="percentualComissao"
+            readOnly={true}
           >
             Percentual Comissão:
           </Campo>
@@ -83,20 +85,28 @@ function Formulario() {
             onChange={handleChange}
             value={produto.custoVenda}
             name="custoVenda"
+            readOnly={true}
           >
             Custo por Venda
           </Campo>
-          <Campo onChange={handleChange} value={produto.lucro} name="lucro">
+          <Campo
+            onChange={handleChange}
+            value={produto.lucro}
+            name="lucro"
+            readOnly={true}
+          >
             Lucro
           </Campo>
           <Campo
             onChange={handleChange}
             value={produto.cpcMaximo}
             name="cpcMaximo"
+            readOnly={true}
           >
             CPC Máximo
           </Campo>
         </div>
+        <button>Adicionar</button>
       </form>
     </div>
   );
