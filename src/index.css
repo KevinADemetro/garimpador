@@ -69,24 +69,36 @@ table {
   margin-top: 1rem;
   background: var(--neutral-800);
   width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.9rem;
 }
 
 thead {
   background-color: var(--neutral-900);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 }
 
 th {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
 }
 
 td {
   text-align: center;
   background-color: var(--neutral-600);
-  padding: 0.3rem 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--neutral-700);
+  transition: background 0.2s ease-in-out;
 }
 
-.txt-left {
+td.txt-left {
   text-align: left;
+}
+
+tr:hover td {
+  background-color: var(--neutral-700);
 }
 
 td > button {
@@ -94,6 +106,12 @@ td > button {
   border: none;
   cursor: pointer;
   color: var(--neutral-0);
+  transition: color 0.2s;
+}
+
+td > button:hover {
+  color: var(--neutral-200);
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
