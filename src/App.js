@@ -9,7 +9,7 @@ const produtoDefault = {
   qtdBuscasMes: "",
   cpcMedio: "",
   percentualComissao: "",
-  custoVenda: "",
+  custoPorVenda: "",
   lucro: "",
   cpcMaximo: "",
 };
@@ -62,11 +62,11 @@ function Formulario({ onAddProduto }) {
     return (cpcMedio * 30).toFixed(2);
   }
 
-  function calcularLucro(custoVenda, comissao) {
+  function calcularLucro(custoPorVenda, comissao) {
     const comissaoNumero =
       parseFloat(comissao.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
-    const custoVendaNumero = parseFloat(custoVenda) || 0;
-    return (comissaoNumero - custoVendaNumero).toFixed(2);
+    const custoPorVendaNumero = parseFloat(custoPorVenda) || 0;
+    return (comissaoNumero - custoPorVendaNumero).toFixed(2);
   }
 
   function calcularCpcMaximo(comissao) {
@@ -83,15 +83,15 @@ function Formulario({ onAddProduto }) {
       produto.preco
     );
     const cpcMedio = calcularCpcMedio(produto.rangeCpc);
-    const custoVenda = calcularCustoPorVenda(cpcMedio);
-    const lucro = calcularLucro(custoVenda, produto.comissao);
+    const custoPorVenda = calcularCustoPorVenda(cpcMedio);
+    const lucro = calcularLucro(custoPorVenda, produto.comissao);
     const cpcMaximo = calcularCpcMaximo(produto.comissao);
     const produtoAtualizado = {
       ...produto,
       id: crypto.randomUUID(),
       percentualComissao: percentualComissao,
       cpcMedio: cpcMedio,
-      custoVenda: custoVenda,
+      custoPorVenda: custoPorVenda,
       lucro: lucro,
       cpcMaximo: cpcMaximo,
     };
@@ -185,7 +185,7 @@ function TabelaProdutos({ produtos }) {
             <td className="txt-left">{produto.nome}</td>
             <td>{formatarMoeda(produto.preco)}</td>
             <td>{formatarMoeda(produto.comissao)}</td>
-            <td>{formatarMoeda(produto.custoVenda)}</td>
+            <td>{formatarMoeda(produto.custoPorVenda)}</td>
             <td>{formatarMoeda(produto.lucro)}</td>
             <td>{Number(produto.percentualComissao).toFixed(2)}%</td>
             <td>{produto.rangeCpc}</td>
@@ -201,14 +201,14 @@ function TabelaProdutos({ produtos }) {
 function copiarDados(produto) {
   const texto = `
 Nome:                  ${produto.nome}
-Range CPC:             ${produto.rangeCPC}
+Range CPC:             ${produto.rangeCpc}
 CPC Médio:             ${produto.cpcMedio}
 Preço:                 ${produto.preco}
 Comissão:              ${produto.comissao}
 Custo por Venda:       ${produto.custoPorVenda}
 Lucro:                 ${produto.lucro}
-Buscas/mês:            ${produto.buscasMes}
-Comissão:              ${produto.comissaoPercentual}
+Buscas/mês:            ${produto.qtdBuscasMes}
+Comissão %:              ${produto.percentualComissao}
 CPC Máximo:            ${produto.cpcMaximo}
 -------------------------------
   `.trim();
