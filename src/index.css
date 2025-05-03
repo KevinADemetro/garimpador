@@ -89,6 +89,13 @@ td {
   text-align: left;
 }
 
+td > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--neutral-0);
+}
+
 @media (max-width: 768px) {
   body {
     padding: 2rem 1rem;

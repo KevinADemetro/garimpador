@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Copy } from "lucide-react";
 
 const produtoDefault = {
   nome: "",
@@ -160,6 +161,7 @@ function TabelaProdutos({ produtos }) {
     <table>
       <thead>
         <tr>
+          <th>Ação</th>
           <th>Nome</th>
           <th>Preço</th>
           <th>Comissão</th>
@@ -175,6 +177,11 @@ function TabelaProdutos({ produtos }) {
       <tbody>
         {produtos.map((produto) => (
           <tr key={produto.id}>
+            <td>
+              <button onClick={() => copiarDados(produto)}>
+                <Copy size={18} />
+              </button>{" "}
+            </td>
             <td className="txt-left">{produto.nome}</td>
             <td>{formatarMoeda(produto.preco)}</td>
             <td>{formatarMoeda(produto.comissao)}</td>
@@ -191,7 +198,23 @@ function TabelaProdutos({ produtos }) {
     </table>
   );
 }
+function copiarDados(produto) {
+  const texto = `
+Nome:                  ${produto.nome}
+Range CPC:             ${produto.rangeCPC}
+CPC Médio:             ${produto.cpcMedio}
+Preço:                 ${produto.preco}
+Comissão:              ${produto.comissao}
+Custo por Venda:       ${produto.custoPorVenda}
+Lucro:                 ${produto.lucro}
+Buscas/mês:            ${produto.buscasMes}
+Comissão:              ${produto.comissaoPercentual}
+CPC Máximo:            ${produto.cpcMaximo}
+-------------------------------
+  `.trim();
 
+  navigator.clipboard.writeText(texto);
+}
 function formatarMoeda(valor) {
   if (typeof valor === "string") {
     valor = valor.replace(/[^0-9,.-]/g, "").replace(",", ".");
