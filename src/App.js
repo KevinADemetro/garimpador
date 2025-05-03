@@ -16,7 +16,9 @@ const produtoDefault = {
 
 function App() {
   function handleAddProduto(produto) {
-    setProdutos((produtos) => [...produtos, produto]);
+    setProdutos((produtos) =>
+      [...produtos, produto].sort((a, b) => b.lucro - a.lucro)
+    );
   }
   const [produtos, setProdutos] = useState([]);
   return (
