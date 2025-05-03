@@ -88,3 +88,44 @@ td {
 .txt-left {
   text-align: left;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  .formulario {
+    padding: 1.5rem;
+  }
+
+  .formulario button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .row-group label {
+    width: 100%;
+  }
+  /* Adiciona responsividade ao grupo de campos */
+  .row-group {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .row-group label {
+    flex: 1 1 250px; /* mínimo de 250px e se ajusta */
+  }
+
+  /* Responsividade para tabelas em telas pequenas */
+  table {
+    margin-top: 1rem;
+    background: var(--neutral-800);
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    border-radius: 1rem;
+  }
+}
