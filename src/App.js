@@ -35,27 +35,26 @@ function Formulario({ onAddProduto }) {
   }
 
   function calcularPercentualComissao(comissao, preco) {
-    const precoNumero = parseFloat(preco.replace("R$", "").replace(",", "."));
-    const comissaoNumero = parseFloat(
-      comissao.replace("R$", "").replace(",", ".")
-    );
+    const precoNumero =
+      parseFloat(preco.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
+    const comissaoNumero =
+      parseFloat(comissao.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
 
-    if (!precoNumero || !comissaoNumero) return 0;
-    return (comissaoNumero / precoNumero) * 100;
+    if (precoNumero === 0) return 0;
+    return ((comissaoNumero / precoNumero) * 100).toFixed(2);
   }
 
   function calcularCpcMedio(rangeCpc) {
     const arrayCpc =
       rangeCpc
         .match(/[\d,]+/g)
-        ?.map((cpc) => parseFloat(cpc.replace(",", "."))) || [];
+        ?.map((cpc) => parseFloat(cpc.replace(",", ".")))
+        .filter((num) => !isNaN(num)) || [];
 
-    if (arrayCpc.length === 0) return "";
+    if (arrayCpc.length === 0) return 0;
 
     const soma = arrayCpc.reduce((acc, val) => acc + val, 0);
-    const media = soma / arrayCpc.length;
-
-    return media.toFixed(2);
+    return (soma / arrayCpc.length).toFixed(2);
   }
 
   function calcularCustoPorVenda(cpcMedio) {
@@ -63,11 +62,16 @@ function Formulario({ onAddProduto }) {
   }
 
   function calcularLucro(custoVenda, comissao) {
-    return (comissao - custoVenda).toFixed(2);
+    const comissaoNumero =
+      parseFloat(comissao.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
+    const custoVendaNumero = parseFloat(custoVenda) || 0;
+    return (comissaoNumero - custoVendaNumero).toFixed(2);
   }
 
   function calcularCpcMaximo(comissao) {
-    return (comissao / 30).toFixed(2);
+    const comissaoNumero =
+      parseFloat(comissao.replace(/[^\d,]/g, "").replace(",", ".")) || 0;
+    return (comissaoNumero / 30).toFixed(2);
   }
 
   function handleSubmit(e) {
@@ -172,14 +176,14 @@ function TabelaProdutos({ produtos }) {
         {produtos.map((produto) => (
           <tr key={produto.id}>
             <td className="txt-left">{produto.nome}</td>
-            <td>R${Number(produto.preco).toFixed(2)}</td>
-            <td>R${Number(produto.comissao).toFixed(2)}</td>
-            <td>R${Number(produto.custoVenda).toFixed(2)}</td>
-            <td>R${Number(produto.lucro).toFixed(2)}</td>
-            <td>{produto.percentualComissao}%</td>
+            <td>{formatarMoeda(produto.preco)}</td>
+            <td>{formatarMoeda(produto.comissao)}</td>
+            <td>{formatarMoeda(produto.custoVenda)}</td>
+            <td>{formatarMoeda(produto.lucro)}</td>
+            <td>{Number(produto.percentualComissao).toFixed(2)}%</td>
             <td>{produto.rangeCpc}</td>
-            <td>R${Number(produto.cpcMedio).toFixed(2)}</td>
-            <td>R${Number(produto.cpcMaximo).toFixed(2)}</td>
+            <td>{formatarMoeda(produto.cpcMedio)}</td>
+            <td>{formatarMoeda(produto.cpcMaximo)}</td>
             <td>{produto.qtdBuscasMes}</td>
           </tr>
         ))}
@@ -188,4 +192,13 @@ function TabelaProdutos({ produtos }) {
   );
 }
 
+function formatarMoeda(valor) {
+  if (typeof valor === "string") {
+    valor = valor.replace(/[^0-9,.-]/g, "").replace(",", ".");
+  }
+  return Number(valor).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
 export default App;
